@@ -11,7 +11,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  * Acceptance test class that uses the JBehave (Gerkin) syntax for writing stories.  You should not need to
  * edit this class to complete the exercise, this is your definition of done.
  */
-public class BerlinClockFixture {
+public class BerlinClockTimeFixture {
 
     private TimeConverter berlinClock;
     private String theTime;
@@ -27,6 +27,7 @@ public class BerlinClockFixture {
     @When("the time is $time")
     public void whenTheTimeIs(String time) {
         theTime = time;
+        berlinClock = new TimeConverterImpl();
     }
 
     @Then("the clock should look like $")
