@@ -18,4 +18,17 @@ public class BerlinClockConverterTest {
 
         assertEquals(expected, result);
     }
+
+    @Test
+    public void getTime_24HourFormat() {
+        //give
+        String inputTime = "23:59:00";
+        BerlinClockTime expected = new BerlinClockTime("Y","RRRR","RRRO","YYRYYRYYRYY","YYYY");
+        //when
+        BerlinClockConverter testClass = new BerlinClockConverter();
+
+        BerlinClockTime result = testClass.getTime(inputTime);
+
+        assertEquals(expected, result);
+    }
 }

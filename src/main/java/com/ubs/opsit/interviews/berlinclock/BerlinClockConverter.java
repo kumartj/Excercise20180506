@@ -8,7 +8,7 @@ public class BerlinClockConverter implements ClockConverter {
     private static final String YELLOW_LAMP = "Y";
     private static final String RED_LAMP = "R";
 
-    public BerlinClockTime getTime(String time){
+    public BerlinClockTime getTime(String time) {
         String[] split = time.split(":");
         return new BerlinClockTime(getSeconds(Integer.parseInt(split[2])),
                 getTopFirstRowHour(Integer.parseInt(split[0])),
@@ -18,8 +18,10 @@ public class BerlinClockConverter implements ClockConverter {
     }
 
     private String getSeconds(int number) {
-        if (number % 2 == 0) return YELLOW_LAMP;
-        else return OFF;
+        if (number % 2 == 0) {
+            return YELLOW_LAMP;
+        }
+        return OFF;
     }
 
     private String getTopFirstRowHour(int number) {
@@ -43,11 +45,13 @@ public class BerlinClockConverter implements ClockConverter {
 
     private String display(int totalLamps, int workingLamps, String color) {
         StringBuilder display = new StringBuilder();
-        for (int i = 0; i < workingLamps; i++) {
-            display.append(color);
-        }
-        for (int i = 0; i < (totalLamps - workingLamps); i++) {
-            display.append(OFF);
+
+        for (int i = 0; i < totalLamps; i++) {
+            if (workingLamps - i > 0) {
+                display.append(color);
+            } else {
+                display.append(OFF);
+            }
         }
         return display.toString();
     }
